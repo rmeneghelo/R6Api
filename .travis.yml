@@ -1,0 +1,14 @@
+language: csharp
+mono: none
+dotnet: 1.1.5
+script:
+- dotnet restore
+deploy:
+  provider: gae
+  skip_cleanup: true
+  keyfile: client-secret_travis.json
+  config: app.yaml
+  project: "${GOOGLE_PROJECT_ID}"
+  default: true
+  on:
+    all_branches: true
