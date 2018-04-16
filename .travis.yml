@@ -6,8 +6,6 @@ script:
 deploy:
   provider: gae
   skip_cleanup: true
-  keyfile: client-secret_travis.json
-  config: app.yaml
   project: "${GOOGLE_PROJECT_ID}"
   default: true
   on:
