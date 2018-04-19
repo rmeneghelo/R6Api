@@ -3,7 +3,7 @@ mono: none
 dotnet: 2.0.0
 script:
 - dotnet build
-- dotnet publish .\R6Api\R6Api.csproj -c Release
+- dotnet publish ./R6Api/R6Api.csproj -c Release
 deploy:
   skip_cleanup: true
   provider: gae
