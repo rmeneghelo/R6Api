@@ -1,13 +1,13 @@
 language: csharp
 mono: none
-dotnet: 2.0.0
+dotnet: 2.1.0
 script:
 - dotnet restore
 deploy:
   provider: gae
-  skip_cleanup: true
   keyfile: credential.json
   project: "${GOOGLE_PROJECT_ID}"
+  no_promote: true
   default: true
   on:
     all_branches: true
