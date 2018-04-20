@@ -6,10 +6,8 @@ dotnet: 2.0.0
 mono: latest
 env:
 - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true DOTNET_CLI_TELEMETRY_OPTOUT=true
-# Make sure gcloud command is on our PATH and the App Engine SDK is in the Python path
 - GAE_PYTHONPATH=${HOME}/.cache/google_appengine PATH=$PATH:${HOME}/google-cloud-sdk/bin PYTHONPATH=${PYTHONPATH}:${GAE_PYTHONPATH} CLOUDSDK_CORE_DISABLE_PROMPTS=1
 before_install:
-# Install Google App Engine Python SDK
 - if [ ! -d "${GAE_PYTHONPATH}" ]; then
     python scripts/fetch_gae_sdk.py $(dirname "${GAE_PYTHONPATH}");
   fi
@@ -18,7 +16,6 @@ before_install:
   fi
 - gcloud auth activate-service-account --key-file credential.json
  install:
-# Set the correct project to deploy to
 - gcloud config set project $GOOGLE_PROJECT_ID
 - gcloud -q components update gae-python
 script:
