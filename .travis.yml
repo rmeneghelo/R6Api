@@ -13,7 +13,6 @@ deploy:
   provider: gae
   keyfile: credential.json
   project: "${GOOGLE_PROJECT_ID}"
-  no_promote: true
   default: true
   on:
     all_branches: true
