@@ -5,12 +5,6 @@ using Newtonsoft.Json;
 
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
-var artifactsDirectory = MakeAbsolute(Directory("./artifacts"));
-
-Setup(context =>
-{
-     CleanDirectory(artifactsDirectory);
-});
 
 Task("Build")
 .Does(() =>
