@@ -7,9 +7,7 @@ mono: latest
 env:
   - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true DOTNET_CLI_TELEMETRY_OPTOUT=true
 script:
-- dotnet restore
-- dotnet build
-- dotnet publish ./R6Api/R6Api.csproj -c Release
+  - ./build.sh
 deploy:
   skip_cleanup: true
   provider: gae
