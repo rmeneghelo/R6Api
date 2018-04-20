@@ -9,12 +9,15 @@ var configuration = Argument("configuration", "Release");
 Task("Build")
 .Does(() =>
 {
-	DotNetCoreBuild(
-		"./src/R6Api/R6Api/R6Api.csproj", 
-		new DotNetCoreBuildSettings()
-		{
-			Configuration = configuration
-		});
+    foreach(var project in GetFiles("./src/**/*.csproj"))
+    {
+        DotNetCoreBuild(
+            project.GetDirectory().FullPath, 
+            new DotNetCoreBuildSettings()
+            {
+                Configuration = configuration
+            });
+    }
 });
 
 Task("Default").IsDependentOn("Build");
