@@ -10,7 +10,7 @@ Task("Build")
 .Does(() =>
 {
 	DotNetCoreBuild(
-		"./src/R6Api.csproj", 
+		"./src/R6Api/R6Api.csproj", 
 		new DotNetCoreBuildSettings()
 		{
 			Configuration = configuration
