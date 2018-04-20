@@ -1,9 +1,12 @@
 language: csharp
 mono: none
-dotnet: 2.1.0
+dotnet: 2.0.0
 script:
 - dotnet restore
+- dotnet build
+- dotnet publish ./R6Api/R6Api.csproj -c Release
 deploy:
+  skip_cleanup: true
   provider: gae
   keyfile: credential.json
   project: "${GOOGLE_PROJECT_ID}"
