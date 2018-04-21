@@ -8,9 +8,7 @@ environment:
   AWSSecretKey:
     secure: $env:DAWSSecretKey
 build_script:
-- ps:  |
-    .\build.ps1
-    publish_wap_xcopy: true
+- ps: .\build.ps1
 test: off
 deploy_script:
 - ps: |
