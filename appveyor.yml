@@ -4,6 +4,9 @@ pull_requests:
 environment:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
   DOTNET_CLI_TELEMETRY_OPTOUT: true
+  AWSAccessKeyId: $env:AWSAccessKeyId
+  AWSSecretKey:
+    secure: $env:DAWSSecretKey
 build_script:
 - ps: .\build.ps1
 test: off
