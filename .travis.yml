@@ -7,9 +7,6 @@ mono: latest
 env:
  - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true DOTNET_CLI_TELEMETRY_OPTOUT=true
 before_install:
-- if [ ! -d ${HOME}/google-cloud-sdk ]; then
-     curl https://sdk.cloud.google.com | bash;
-  fi
 - gcloud auth activate-service-account --key-file credential.json
 install:
  - gcloud config set project $GOOGLE_PROJECT_ID

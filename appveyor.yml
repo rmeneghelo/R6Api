@@ -4,14 +4,6 @@ pull_requests:
 environment:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
   DOTNET_CLI_TELEMETRY_OPTOUT: true
-  AWSAccessKeyId: $env:AWSAccessKeyId
-  AWSSecretKey:
-    secure: $env:DAWSSecretKey
 build_script:
 - ps: .\build.ps1
 test: off
-deploy_script:
-- ps: |
-    $packageweb = $artifacts.values | Where-Object { $_.path -like '*R6Api.zip' }
-    $exe = "C:\Program Files (x86)\AWS Tools\Deployment Tool\awsdeploy.exe"
-    &$exe -r "-DDeploymentPackage=$($packageweb.path)" "-DEnvironment.Name=R6api-env" "-DApplication.Name=R6Api" "-DRegion=sa-east-1" "-DAWSAccessKey=$env:AWSAccessKeyId" "-DAWSSecretKey=$env:AWSSecretKey" "C:\projects\r6api\awsdeploy.txt"
