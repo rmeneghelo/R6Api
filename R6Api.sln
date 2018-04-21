@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "R6Api", "R6Api\R6Api.csproj", "{6C4B35D8-F6ED-452A-A618-C2B51BC7DE73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "R6Api", "src\R6Api\R6Api.csproj", "{6C4B35D8-F6ED-452A-A618-C2B51BC7DE73}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "R6Api.Application", "R6Api.Application\R6Api.Application.csproj", "{BAEEE0C3-D0D9-4135-9035-2E8A1127A8D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "R6Api.Application", "src\R6Api.Application\R6Api.Application.csproj", "{BAEEE0C3-D0D9-4135-9035-2E8A1127A8D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R6Api.Domain", "R6Api.Domain\R6Api.Domain.csproj", "{2E52BE4D-5151-4608-B041-4A250D8CAD0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "R6Api.Domain", "src\R6Api.Domain\R6Api.Domain.csproj", "{2E52BE4D-5151-4608-B041-4A250D8CAD0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R6Api.IoC", "R6Api.IoC\R6Api.IoC.csproj", "{DD156FD3-F34A-47A1-BA04-DA35B8745B92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "R6Api.IoC", "src\R6Api.IoC\R6Api.IoC.csproj", "{DD156FD3-F34A-47A1-BA04-DA35B8745B92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R6Api.Repository", "R6Api.Repository\R6Api.Repository.csproj", "{03080AEA-EA01-4384-AE2F-56C5F458C042}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "R6Api.Repository", "src\R6Api.Repository\R6Api.Repository.csproj", "{03080AEA-EA01-4384-AE2F-56C5F458C042}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6C54BE64-B28F-4E63-B9F0-A86C19778BF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +44,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6C4B35D8-F6ED-452A-A618-C2B51BC7DE73} = {6C54BE64-B28F-4E63-B9F0-A86C19778BF0}
+		{BAEEE0C3-D0D9-4135-9035-2E8A1127A8D4} = {6C54BE64-B28F-4E63-B9F0-A86C19778BF0}
+		{2E52BE4D-5151-4608-B041-4A250D8CAD0D} = {6C54BE64-B28F-4E63-B9F0-A86C19778BF0}
+		{DD156FD3-F34A-47A1-BA04-DA35B8745B92} = {6C54BE64-B28F-4E63-B9F0-A86C19778BF0}
+		{03080AEA-EA01-4384-AE2F-56C5F458C042} = {6C54BE64-B28F-4E63-B9F0-A86C19778BF0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E9E6BE49-E876-4610-BF9F-3900F02F914C}

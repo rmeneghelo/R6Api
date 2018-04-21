@@ -1,8 +1,3 @@
-#tool "nuget:?package=GitVersion.CommandLine"
-#addin nuget:?package=Newtonsoft.Json
-
-using Newtonsoft.Json;
-
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
 
