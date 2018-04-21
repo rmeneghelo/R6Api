@@ -16,7 +16,7 @@ install:
   - gcloud.cmd components install beta --quiet
 deploy_script:
 - cmd: >-
-    dotnet publish C:/projects/r6api/R6Api.csproj -c Release
+    dotnet publish C:/projects/r6api/R6Api/R6Api.csproj -c Release
     gcloud config set project $PROJECT_ID
     gcloud auth activate-service-account $PROJECT_ID@appspot.gserviceaccount.com --key-file="credential_appveyor.json"
     gcloud beta app deploy src/R6Api/bin/Release/netcoreapp2.0/publish/app.yaml --quiet
