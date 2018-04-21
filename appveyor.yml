@@ -7,3 +7,6 @@ environment:
 build_script:
 - ps: .\build.ps1
 test: off
+artifacts:
+- path: .\artifacts
+  type: ElasticBeanstalkPackage
