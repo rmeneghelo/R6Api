@@ -14,7 +14,6 @@ before_install:
 - gcloud auth activate-service-account --key-file credential.json
 install:
  - gcloud config set project $GOOGLE_PROJECT_ID
- - gcloud -q components update gae-python
 script:
   - ./build.sh
   - gcloud -q preview app deploy app.yaml --promote
