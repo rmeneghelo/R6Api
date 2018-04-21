@@ -13,6 +13,6 @@ deploy_script:
 
     gcloud config set project %PROJECT_ID%
 
-    gcloud auth activate-service-account %CLIENT_EMAIL% --key-file="credential_appveyor.json"
+    gcloud auth activate-service-account %CLIENT_EMAIL% --key-file=".\credential_appveyor.json"
 
     gcloud beta app deploy ./app.yaml --quiet
