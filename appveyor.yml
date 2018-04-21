@@ -12,7 +12,7 @@ install:
 deploy_script:  
 - cmd: >-
 
-    copy C:/projects/r6api/app.yaml C:/projects/r6api/artifacts/
+    copy .\app.yaml C:\projects\r6api\artifacts\
     
     gcloud config set project %PROJECT_ID%
 
