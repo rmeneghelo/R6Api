@@ -16,4 +16,4 @@ install:
  - gcloud config set project $GOOGLE_PROJECT_ID
 script:
   - ./build.sh
-  - gcloud -q preview app deploy app.yaml --promote
+  - gcloud -q beta app deploy app.yaml --promote
