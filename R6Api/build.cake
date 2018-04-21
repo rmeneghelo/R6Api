@@ -44,6 +44,7 @@ Task("Create-Artifact-Package")
                 ArgumentCustomization = args => args.Append($"/p:Version={version}")
             });
     }
+	Information(version);
 });
 
 Task("Default").IsDependentOn("Build");
