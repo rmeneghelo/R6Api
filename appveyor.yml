@@ -1,7 +1,8 @@
 version: 1.0.{build}  
 build_script:
 - ps: .\build.ps1
-install:  
+install:
+  - secure-file\tools\secure-file -decrypt "credential_appveyor.json.enc" -secret %SECRET%  
   - nuget install secure-file -ExcludeVersion
   - choco install gcloudsdk
   - refreshenv
