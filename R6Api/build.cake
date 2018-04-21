@@ -50,3 +50,16 @@ Task("Create-Artifact-Package")
 Task("Default").IsDependentOn("Build");
 
 RunTarget(target);
+
+private bool ShouldRunRelease() => AppVeyor.IsRunningOnAppVeyor && AppVeyor.Environment.Repository.Tag.IsTag;
+
+private string GetPackageVersion()
+{
+    var gitVersion = GitVersion(new GitVersionSettings {
+        RepositoryPath = "."
+    });
+
+    Information($"Git Semantic Version: {JsonConvert.SerializeObject(gitVersion)}");
+    
+    return gitVersion.NuGetVersionV2;
+}
