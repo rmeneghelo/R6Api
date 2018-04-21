@@ -4,7 +4,6 @@ build_script:
 install:
   - ps: iex ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/appveyor/secure-file/master/install.ps1'))
   - cmd: appveyor-tools\secure-file -decrypt .\credential_veyor.json.enc -secret %SECRET% 
-  - nuget install secure-file -ExcludeVersion
   - choco install gcloudsdk
   - refreshenv
   - gcloud.cmd components copy-bundled-python>>python_path.txt && SET /p CLOUDSDK_PYTHON=<python_path.txt && DEL python_path.txt
@@ -13,8 +12,10 @@ install:
 deploy_script:  
 - cmd: >-
 
+    copy ./app.yaml ./artifacts
+    
     gcloud config set project %PROJECT_ID%
 
     gcloud auth activate-service-account %CLIENT_EMAIL% --key-file=".\credential_veyor.json"
 
-    gcloud beta functions deploy ./app.yaml --source=./artifacts --quiet
+    gcloud beta app deploy ./app.yaml --quiet
