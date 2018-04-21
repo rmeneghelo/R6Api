@@ -10,3 +10,22 @@ test: off
 artifacts:
 - path: .\artifacts
   type: ElasticBeanstalkPackage
+  
+version: 1.0.{build}  
+build_script:
+- ps: .\build.ps1
+install:  
+  - nuget install secure-file -ExcludeVersion
+  - choco install gcloudsdk
+  - refreshenv
+  - gcloud.cmd components copy-bundled-python>>python_path.txt && SET /p CLOUDSDK_PYTHON=<python_path.txt && DEL python_path.txt
+  - gcloud.cmd components update --quiet
+  - gcloud.cmd components install beta --quiet
+deploy_script:  
+- cmd: >-
+
+    gcloud config set project $env:PROJECT_ID
+
+    gcloud auth activate-service-account $env:CLIENT_EMAIL --key-file="credential.json"
+
+    gcloud beta app deploy ./app.yaml --quiet
