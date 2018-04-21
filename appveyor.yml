@@ -18,4 +18,4 @@ deploy_script:
 
     gcloud auth activate-service-account %CLIENT_EMAIL% --key-file=".\credential_veyor.json"
 
-    gcloud beta app deploy ./app.yaml --quiet
+    gcloud beta app deploy ./artifacts/app.yaml --quiet
