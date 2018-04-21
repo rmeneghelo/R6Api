@@ -10,11 +10,11 @@ namespace R6Api
         public static void Main(string[] args)
         {
             var host = WebHost.CreateDefaultBuilder(args)
+              .UseUrls("http://*:8080;https://*:8080")
               .UseKestrel()
               .UseContentRoot(Directory.GetCurrentDirectory())
               .UseIISIntegration()
               .UseStartup<Startup>()
-              .UseUrls("http://*:8080;https://*:8080")
               .Build();
 
             host.Run();
