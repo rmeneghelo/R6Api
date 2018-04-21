@@ -1,13 +1,13 @@
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
-var solutionName = "./src/R6Api.sln";
+var csprojName = "./src/R6Api/R6Api.csproj";
 var artifactsDirectory = MakeAbsolute(Directory("./artifacts"));
 
 Task("Build")
 .Does(() =>
 {
 	DotNetCoreBuild(
-		solutionName, 
+		csprojName, 
 		new DotNetCoreBuildSettings()
 		{
 			Configuration = configuration
@@ -19,7 +19,7 @@ Task("Create-Pack")
 .Does(() =>
 {
 	DotNetCorePack(
-		solutionName,
+		csprojName,
 		new DotNetCorePackSettings()
 		{
 			Configuration = configuration,
@@ -31,7 +31,7 @@ Task("Publish")
  .IsDependentOn("Create-Pack")
  .Does(() =>
 {
-    DotNetCorePublish(solutionName, new DotNetCorePublishSettings {
+    DotNetCorePublish(csprojName, new DotNetCorePublishSettings {
   Configuration = "Release",
   OutputDirectory = artifactsDirectory
  });
