@@ -1,6 +1,6 @@
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
-var solutionName = "./src/R6Api/R6Api.sln";
+var solutionName = "./src/R6Api.sln";
 var artifactsDirectory = MakeAbsolute(Directory("./artifacts"));
 
 Task("Build")
