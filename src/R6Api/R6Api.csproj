@@ -6,7 +6,6 @@
     <AssemblyName>R6Api</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>R6Api</PackageId>
-	<GenerateProgramFile>false</GenerateProgramFile>
   </PropertyGroup>
 
   <ItemGroup>
