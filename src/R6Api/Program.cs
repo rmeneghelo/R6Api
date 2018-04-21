@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace R6Api
 {
@@ -12,12 +9,12 @@ namespace R6Api
     {
         public static void Main(string[] args)
         {
-            var host = new WebHostBuilder()
+            var host = WebHost.CreateDefaultBuilder(args)
               .UseKestrel()
               .UseContentRoot(Directory.GetCurrentDirectory())
               .UseIISIntegration()
               .UseStartup<Startup>()
-              .UseUrls("http://0.0.0.0:8080", "https://0.0.0.0:8080")
+              .UseUrls("http://*:8080;https://*:8080")
               .Build();
 
             host.Run();
