@@ -1,0 +1,21 @@
+version: 1.0.{build}  
+build_script:
+- ps: .\build.ps1
+install:
+  - ps: iex ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/appveyor/secure-file/master/install.ps1'))
+  - cmd: appveyor-tools\secure-file -decrypt .\credential_veyor.json.enc -secret %SECRET% 
+  - choco install gcloudsdk
+  - refreshenv
+  - gcloud.cmd components copy-bundled-python>>python_path.txt && SET /p CLOUDSDK_PYTHON=<python_path.txt && DEL python_path.txt
+  - gcloud.cmd components update --quiet
+  - gcloud.cmd components install beta --quiet
+deploy_script:  
+- cmd: >-
+
+    copy .\app.yaml C:\projects\r6api\artifacts\
+    
+    gcloud config set project %PROJECT_ID%
+
+    gcloud auth activate-service-account %CLIENT_EMAIL% --key-file=".\credential_veyor.json"
+
+    gcloud beta app deploy ./artifacts/app.yaml --quiet
