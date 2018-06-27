@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using R6Api.Domain.Options;
 using R6Api.IoC;
 using System;
 
@@ -37,6 +38,9 @@ namespace R6Api
             services.AddMvc();
             // Enables Stackdriver Trace.
             services.AddGoogleTrace(options => options.ProjectId = projectId);
+
+            services.Configure<HeaderOption>(options => Configuration.GetSection("HeaderUbisoft").Bind(options));
+            services.Configure<UbisoftOption>(options => Configuration.GetSection("Ubisoft").Bind(options));
 
             // Sends Exceptions to Stackdriver Error Reporting.
             services.AddGoogleExceptionLogging(

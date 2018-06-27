@@ -1,5 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Options;
 using R6Api.Domain.Interfaces.Respositories;
+using R6Api.Domain.Options;
 using RestSharp;
 using System.Threading.Tasks;
 
@@ -7,21 +8,23 @@ namespace R6Api.Repository
 {
     public class StatisticsRepository : IStatisticsRepository
     {
-        IConfiguration _configuration;
+        IOptions<HeaderOption> _headerOption;
+        IOptions<UbisoftOption> _ubisoftOption;
 
-        public StatisticsRepository(IConfiguration configuration)
+        public StatisticsRepository(IOptions<HeaderOption> headerOption, IOptions<UbisoftOption> ubisoftOption)
         {
-            _configuration = configuration;
+            _headerOption = headerOption;
+            _ubisoftOption = ubisoftOption;
         }
 
         public async void GetStatistics()
         {
-            var client = new RestClient(_configuration["AuthorizationUrl"]);
+            var client = new RestClient(_ubisoftOption.Value.AuthorizationUrl);
             var request = new RestRequest(Method.POST);
 
-            request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("Ubi-AppId", _configuration["Ubisoft:UbiAppId"]);
-            request.AddHeader("Authorization", _configuration["Ubisoft:AuthorizationHeader"]);
+            request.AddHeader("Content-Type", _headerOption.Value.ContentType);
+            request.AddHeader("Ubi-AppId", _ubisoftOption.Value.UbiAppId);
+            request.AddHeader("Authorization", _ubisoftOption.Value.AuthorizationHeader);
 
             var taskCompletion = new TaskCompletionSource<IRestResponse>();
 
