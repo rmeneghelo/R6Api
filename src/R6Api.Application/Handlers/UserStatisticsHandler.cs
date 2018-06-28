@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace R6Api.Application.Handlers
 {
-    public class UserStatisticsHandler : IRequestHandler<UserStatisticsCommand, UserStatisticsResponse>
+    public class UserStatisticsHandler : IRequestHandler<UserStatisticsQuery, UserStatisticsResponse>
     {
         private readonly ILogger<UserStatisticsHandler> _logger;
         private readonly IStatisticsRepository _statisticsRepository;
@@ -19,7 +19,7 @@ namespace R6Api.Application.Handlers
             _statisticsRepository = statisticsRepository;
         }
 
-        public async Task<UserStatisticsResponse> Handle(UserStatisticsCommand request, CancellationToken cancellationToken)
+        public async Task<UserStatisticsResponse> Handle(UserStatisticsQuery request, CancellationToken cancellationToken)
         {
             _statisticsRepository.GetStatistics();
             return await Task.FromResult(new UserStatisticsResponse());

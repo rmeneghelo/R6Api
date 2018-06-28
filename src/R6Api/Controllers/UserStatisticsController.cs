@@ -21,7 +21,7 @@ namespace R6Api.Controllers
 
         // GET api/values
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] UserStatisticsCommand command)
+        public async Task<IActionResult> Get([FromQuery] UserStatisticsQuery command)
         {
             var result = await _mediatr.Send(command).ConfigureAwait(false);
 
