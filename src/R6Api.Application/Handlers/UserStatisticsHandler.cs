@@ -21,7 +21,7 @@ namespace R6Api.Application.Handlers
 
         public async Task<UserStatisticsResponse> Handle(UserStatisticsQuery request, CancellationToken cancellationToken)
         {
-            _statisticsRepository.GetStatistics();
+            var authenticatedUser = await _statisticsRepository.GetAuthenticatedUser().ConfigureAwait(false);
             return await Task.FromResult(new UserStatisticsResponse());
         }
     }

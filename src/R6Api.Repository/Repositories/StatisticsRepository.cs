@@ -19,7 +19,7 @@ namespace R6Api.Repository.Repositories
             _ubisoftOption = ubisoftOption;
         }
 
-        public async Task<AuthorizedUser> GetStatistics()
+        public async Task<AuthorizedUser> GetAuthenticatedUser()
         {
             var client = new RestClient(_ubisoftOption.Value.AuthorizationUrl);
             var request = new RestRequest(Method.POST);
