@@ -1,10 +1,12 @@
 ﻿using Microsoft.Extensions.Options;
 using R6Api.Domain.Interfaces.Respositories;
+using R6Api.Domain.Models.Entities;
 using R6Api.Domain.Options;
 using RestSharp;
+using System.Threading;
 using System.Threading.Tasks;
 
-namespace R6Api.Repository
+namespace R6Api.Repository.Repositories
 {
     public class StatisticsRepository : IStatisticsRepository
     {
@@ -17,7 +19,7 @@ namespace R6Api.Repository
             _ubisoftOption = ubisoftOption;
         }
 
-        public async void GetStatistics()
+        public async Task<AuthorizedUser> GetStatistics()
         {
             var client = new RestClient(_ubisoftOption.Value.AuthorizationUrl);
             var request = new RestRequest(Method.POST);
@@ -26,12 +28,9 @@ namespace R6Api.Repository
             request.AddHeader("Ubi-AppId", _ubisoftOption.Value.UbiAppId);
             request.AddHeader("Authorization", _ubisoftOption.Value.AuthorizationHeader);
 
-            var taskCompletion = new TaskCompletionSource<IRestResponse>();
+            var handle = await client.ExecuteTaskAsync<AuthorizedUser>(request, new CancellationToken()).ConfigureAwait(false);
 
-            var handle = client.ExecuteAsync(
-                request, r => taskCompletion.SetResult(r));
-
-            RestResponse response = (RestResponse)(await taskCompletion.Task);
+            return handle.Data;
         }
     }
 }

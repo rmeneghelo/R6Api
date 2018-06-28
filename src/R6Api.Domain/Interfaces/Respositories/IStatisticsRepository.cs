@@ -1,7 +1,10 @@
-﻿namespace R6Api.Domain.Interfaces.Respositories
+﻿using R6Api.Domain.Models.Entities;
+using System.Threading.Tasks;
+
+namespace R6Api.Domain.Interfaces.Respositories
 {
     public interface IStatisticsRepository
     {
-        void GetStatistics();
+        Task<AuthorizedUser> GetStatistics();
     }
 }
